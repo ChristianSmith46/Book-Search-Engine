@@ -1,5 +1,7 @@
 const { gql } = require('apollo-server-express');
 
+
+// Create object types, input for book, queries, and mutations
 const typeDefs = gql`
     input BookInput {
         authors: [String]

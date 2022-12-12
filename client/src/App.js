@@ -27,6 +27,7 @@ const authLink = setContext((_, { headers }) => {
   };
 });
 
+// Create apollo client to pass into apollo provider
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),

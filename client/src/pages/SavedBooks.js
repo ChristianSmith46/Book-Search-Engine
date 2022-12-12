@@ -4,6 +4,7 @@ import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap
 import Auth from '../utils/auth';
 import { removeBookId } from '../utils/localStorage';
 
+// Add imports for graphql mutation and query
 import { useQuery, useMutation } from '@apollo/client';
 import { GET_ME } from '../utils/queries';
 import { REMOVE_BOOK } from '../utils/mutations';
@@ -11,8 +12,11 @@ import { REMOVE_BOOK } from '../utils/mutations';
 const SavedBooks = () => {
 
 
+  // Query for the users data
   const {loading, data } = useQuery(GET_ME);
+  // Get function deleteBook by useing REMOVE_BOOK mutation
   const [deleteBook] = useMutation(REMOVE_BOOK);
+  // If data.me exists use it otherwise empty object
   const userData = data?.me || {};
 
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
@@ -24,6 +28,7 @@ const SavedBooks = () => {
     }
 
     try {
+      // delete book mutation being run and deleting by bookId
       await deleteBook({
         variables: { bookId }
       });
